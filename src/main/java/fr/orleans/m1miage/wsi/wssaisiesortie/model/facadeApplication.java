@@ -35,12 +35,10 @@ public class facadeApplication {
 
         LocalDate now = LocalDate.now();
 
-        // ✅ dateFinSortie > maintenant
         if (!dateFinSortie.isAfter(now)) {
             throw new IllegalArgumentException("La date limite de sortie doit être postérieure à aujourd’hui");
         }
 
-        // ✅ dateFinVote < dateFinSortie
         if (!dateFinVote.isBefore(dateFinSortie)) {
             throw new IllegalArgumentException("La date limite de vote doit être antérieure à la date limite de sortie");
         }
