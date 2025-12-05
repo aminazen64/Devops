@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sorties</title>
+</head>
+<body>
+
+<h1>Liste des sorties</h1>
+
+<p th:if="${success}" th:text="${success}" style="color: green;"></p>
+<p th:if="${error}" th:text="${error}" style="color: red;"></p>
+
+<table border="1" cellpadding="6">
+    <thead>
+    <tr>
+        <th>Label</th>
+        <th>Lieu</th>
+        <th>Date fin vote</th>
+        <th>Date fin sortie</th>
+        <th>Max personnes</th>
+        <th>Nb votes</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="s : ${sorties}">
+        <td th:text="${s.label}"></td>
+        <td th:text="${s.lieu}"></td>
+        <td th:text="${s.dateFinVote}"></td>
+        <td th:text="${s.dateFinSortie}"></td>
+        <td th:text="${s.nbrMaxPersonnes}"></td>
+        <td th:text="${s.nbVotes}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>Ajouter une sortie</h2>
+
+<form th:action="@{/sorties/add}" method="post" th:object="${sortieForm}">
+    <div>
+        <label>Label</label>
+        <input type="text" th:field="*{label}" required>
+    </div>
+
+    <div>
+        <label>Lieu</label>
+        <input type="text" th:field="*{lieu}" required>
+    </div>
+
+    <div>
+        <label>Date fin vote</label>
+        <input type="date" th:field="*{dateFinVote}" required>
+    </div>
+
+    <div>
+        <label>Date fin sortie</label>
+        <input type="date" th:field="*{dateFinSortie}" required>
+    </div>
+
+    <div>
+        <label>Max personnes</label>
+        <input type="number" min="1" th:field="*{nbrMaxPersonnes}" required>
+    </div>
+
+    <button type="submit">Ajouter</button>
+</form>
+
+</body>
+</html>
